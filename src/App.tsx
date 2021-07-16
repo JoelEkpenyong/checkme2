@@ -1,15 +1,16 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
-import { Text } from "@chakra-ui/react";
+import { Landing } from "./landing";
+import { Route, Switch } from "react-router-dom";
+import { Login } from "./auth/login";
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <div className="App">
-        <Text as="h1" color="gray.100">
-          This is the checkme site
-        </Text>
-      </div>
+      <Switch>
+        <Route path="/" exact component={Landing} />
+        <Route path="/login" component={Login} />
+      </Switch>
     </ChakraProvider>
   );
 }

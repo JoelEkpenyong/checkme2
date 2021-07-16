@@ -1,7 +1,9 @@
 const textStyles = {
   brand: {
-    fontSize: ["12px", "20px", "50px"],
-    color: "primary.800",
+    fontSize: "3xl",
+    color: "gray.100",
+    lineHeight: "1.2em",
+    fontWeight: "extrabold",
   },
 };
 

@@ -1,0 +1,57 @@
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  HStack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import React from "react";
+import { GoogleIcon, LogoIcon } from "../../components/icon";
+import { LoginForm } from "./LoginForm";
+
+interface props {}
+
+export const Login: React.FC<props> = () => {
+  return (
+    <Container maxW="container.xl">
+      <Box as="nav" px={5} py={7} textAlign="right">
+        <Button>Log in</Button>
+      </Box>
+
+      <Container centerContent>
+        <LogoIcon boxSize={14} />
+        <Text
+          color="gray.100"
+          fontSize="xl"
+          textTransform="capitalize"
+          lineHeight={6}
+          mt={8}
+        >
+          let's create an account
+        </Text>
+        <VStack spacing={7} minW={80} mt={9}>
+          <LoginForm />
+          <HStack w="100%">
+            <Divider orientation="horizontal" borderColor="gray.700" />
+            <Text
+              fontSize="0.625rem"
+              color="gray.100"
+              w="80%"
+              textAlign="center"
+              fontWeight={600}
+            >
+              OR
+            </Text>
+            <Divider orientation="horizontal" borderColor="gray.700" />
+          </HStack>
+          <Button variant="grey" w="100%" type="button">
+            <GoogleIcon boxSize="20px" mx={3} />
+            Continue With Google
+          </Button>
+        </VStack>
+      </Container>
+    </Container>
+  );
+};
