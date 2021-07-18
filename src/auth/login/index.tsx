@@ -30,7 +30,7 @@ export const Login: React.FC<props> = () => {
         </Link>
       </Box>
 
-      <Container centerContent>
+      <Container centerContent pt={[10, 0]}>
         <LogoIcon boxSize={14} />
         <Text
           color="gray.100"
