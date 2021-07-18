@@ -12,11 +12,12 @@ import AuthInput from "../../components/input";
 
 interface props {}
 
-export const LoginForm: React.FC<props> = () => {
+export const SignupForm: React.FC<props> = () => {
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ fullname: "", email: "", password: "" }}
       validationSchema={Yup.object({
+        fullname: Yup.string().required("Required"),
         email: Yup.string().email("Invalid email address").required("Required"),
         password: Yup.string()
           .min(6, "Password must be a minium of 6 characters")
@@ -35,13 +36,29 @@ export const LoginForm: React.FC<props> = () => {
             <Box width="100%">
               <FormControl
                 isInvalid={
+                  formik.touched.fullname && formik.errors.fullname
+                    ? true
+                    : false
+                }
+              >
+                <AuthInput
+                  labelText="Full name"
+                  variant="grey"
+                  {...formik.getFieldProps("fullname")}
+                />
+                <FormErrorMessage>{formik.errors.fullname}</FormErrorMessage>
+              </FormControl>
+            </Box>
+
+            <Box width="100%">
+              <FormControl
+                isInvalid={
                   formik.touched.email && formik.errors.email ? true : false
                 }
               >
                 <AuthInput
                   labelText="Email"
                   variant="grey"
-                  type="password"
                   {...formik.getFieldProps("email")}
                 />
                 <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
@@ -59,7 +76,6 @@ export const LoginForm: React.FC<props> = () => {
                 <AuthInput
                   labelText="Password"
                   variant="grey"
-                  type="password"
                   {...formik.getFieldProps("password")}
                 />
                 <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
@@ -71,7 +87,7 @@ export const LoginForm: React.FC<props> = () => {
               isLoading={formik.isSubmitting}
               type="submit"
             >
-              Log in
+              Create account
             </Button>
           </VStack>
         </Form>

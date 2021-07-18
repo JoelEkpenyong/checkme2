@@ -6,12 +6,14 @@ interface props {
   value?: string | number;
   variant?: string;
   placeholder?: string;
+  type?: string;
 }
 
 const AuthInput: React.FC<props> = ({
   labelText,
   variant,
   placeholder,
+  type,
   ...props
 }) => {
   return (
@@ -31,6 +33,7 @@ const AuthInput: React.FC<props> = ({
         {...props}
         placeholder={placeholder}
         fontSize="sm"
+        type={type}
       />
     </Box>
   );
