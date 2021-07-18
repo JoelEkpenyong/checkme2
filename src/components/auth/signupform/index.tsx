@@ -27,6 +27,7 @@ const SignupForm: React.FC<props> = () => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2));
           actions.setSubmitting(false);
+          actions.resetForm();
         }, 1000);
       }}
     >

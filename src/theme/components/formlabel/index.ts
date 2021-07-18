@@ -5,7 +5,7 @@ const FormLabel = {
       fontWeight: 700,
       textAlign: "center",
       padding: "0.25rem 0.625rem",
-      color: "gray.300",
+      color: "primary.500",
       backgroundColor: "gray.500",
     },
   },
