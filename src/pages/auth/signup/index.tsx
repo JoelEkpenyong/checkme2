@@ -12,12 +12,19 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { GoogleIcon, LogoIcon } from "../../../components/icon";
 import SignupForm from "../../../components/auth/signupform";
+import { motion } from "framer-motion";
+import { PageTransitionVariant } from "../../../components/util/framerVariants";
 
 interface props {}
 
 export const Signup: React.FC<props> = () => {
   return (
-    <Container maxW="container.xl">
+    <Container
+      as={motion.div}
+      exit="exit"
+      variants={PageTransitionVariant}
+      maxW="container.xl"
+    >
       <Box as="nav" px={5} py={7} textAlign="right">
         <Link
           as={RouterLink}

@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -9,15 +10,54 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import React from "react";
-import { LogoIcon } from "../components/icon";
+import { motion } from "framer-motion";
+import { LogoIcon } from "../../components/icon";
 
 interface Props {}
 
 export const Landing: React.FC<Props> = () => {
+  const animationVariant = {
+    container: {
+      exit: {
+        opacity: 0,
+      },
+      animate: {
+        transition: {
+          staggerChildren: 0.2,
+          staggerDirection: -1,
+          delayChildren: 0.3,
+        },
+      },
+    },
+    box: {
+      inital: {
+        opacity: 0,
+      },
+      animate: {
+        opacity: 1,
+        transition: {
+          duration: 0.6,
+        },
+      },
+    },
+  };
+
   return (
-    <Container maxW="container.xl">
-      <Box as="nav" px={5} py={7} textAlign="right">
+    <Container
+      as={motion.div}
+      initial="inital"
+      animate="animate"
+      exit="exit"
+      variants={animationVariant.container}
+      maxW="container.xl"
+    >
+      <Box
+        as={motion.nav}
+        px={5}
+        py={7}
+        variants={animationVariant.box}
+        textAlign="right"
+      >
         <Link
           as={RouterLink}
           to="/login"
@@ -29,7 +69,12 @@ export const Landing: React.FC<Props> = () => {
         </Link>
       </Box>
 
-      <Container centerContent mt={28}>
+      <Container
+        as={motion.div}
+        variants={animationVariant.box}
+        centerContent
+        mt={28}
+      >
         <VStack spacing={10}>
           <Flex direction="column" justifyContent="center" alignItems="center">
             <LogoIcon boxSize={14} />
@@ -40,7 +85,7 @@ export const Landing: React.FC<Props> = () => {
           <Text
             as="h3"
             color="gray.200"
-            fontSize="3xl"
+            fontSize={["2xl", "3xl"]}
             lineHeight="9"
             textAlign="center"
           >

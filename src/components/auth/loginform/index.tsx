@@ -41,7 +41,6 @@ const LoginForm: React.FC<props> = () => {
                 <AuthInput
                   labelText="Email"
                   variant="grey"
-                  type="password"
                   {...formik.getFieldProps("email")}
                 />
                 <FormErrorMessage>{formik.errors.email}</FormErrorMessage>

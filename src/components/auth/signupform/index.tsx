@@ -76,6 +76,7 @@ const SignupForm: React.FC<props> = () => {
                 <AuthInput
                   labelText="Password"
                   variant="grey"
+                  type="password"
                   {...formik.getFieldProps("password")}
                 />
                 <FormErrorMessage>{formik.errors.password}</FormErrorMessage>

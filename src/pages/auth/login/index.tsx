@@ -11,13 +11,20 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { GoogleIcon, LogoIcon } from "../../../components/icon";
+import { motion } from "framer-motion";
 import LoginForm from "../../../components/auth/loginform";
+import { PageTransitionVariant } from "../../../components/util/framerVariants";
 
 interface props {}
 
 export const Login: React.FC<props> = () => {
   return (
-    <Container maxW="container.xl">
+    <Container
+      as={motion.div}
+      exit="exit"
+      variants={PageTransitionVariant}
+      maxW="container.xl"
+    >
       <Box as="nav" px={5} py={7} textAlign="right">
         <Link
           as={RouterLink}
