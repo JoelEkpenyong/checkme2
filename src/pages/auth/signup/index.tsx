@@ -10,23 +10,23 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import { GoogleIcon, LogoIcon } from "../../components/icon";
-import { LoginForm } from "./LoginForm";
+import { GoogleIcon, LogoIcon } from "../../../components/icon";
+import SignupForm from "../../../components/auth/signupform";
 
 interface props {}
 
-export const Login: React.FC<props> = () => {
+export const Signup: React.FC<props> = () => {
   return (
     <Container maxW="container.xl">
       <Box as="nav" px={5} py={7} textAlign="right">
         <Link
           as={RouterLink}
-          to="/register"
+          to="/login"
           _hover={{
             textDecoration: "none",
           }}
         >
-          <Button>Create Account</Button>
+          <Button>Log in</Button>
         </Link>
       </Box>
 
@@ -42,7 +42,7 @@ export const Login: React.FC<props> = () => {
           let's create an account
         </Text>
         <VStack spacing={7} minW={80} mt={9}>
-          <LoginForm />
+          <SignupForm />
           <HStack w="100%">
             <Divider orientation="horizontal" borderColor="gray.700" />
             <Text

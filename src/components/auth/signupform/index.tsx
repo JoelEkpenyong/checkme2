@@ -8,11 +8,11 @@ import {
   FormErrorMessage,
   VStack,
 } from "@chakra-ui/react";
-import AuthInput from "../../components/input";
+import AuthInput from "../../input";
 
 interface props {}
 
-export const SignupForm: React.FC<props> = () => {
+const SignupForm: React.FC<props> = () => {
   return (
     <Formik
       initialValues={{ fullname: "", email: "", password: "" }}
@@ -95,3 +95,5 @@ export const SignupForm: React.FC<props> = () => {
     </Formik>
   );
 };
+
+export default SignupForm;

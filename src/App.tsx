@@ -1,9 +1,9 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
-import { Landing } from "./landing";
+import { Landing } from "./pages/landing";
 import { Route, Switch } from "react-router-dom";
-import { Signup } from "./auth/signup";
-import { Login } from "./auth/login";
+import { Signup } from "./pages/auth/signup";
+import { Login } from "./pages/auth/login";
 
 function App() {
   return (
