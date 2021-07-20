@@ -4,6 +4,7 @@ import { Landing } from "./pages/landing";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { Signup } from "./pages/auth/signup";
 import { Login } from "./pages/auth/login";
+import { Dashboard } from "./pages/dashboard";
 import { AnimatePresence } from "framer-motion";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" exact component={Landing} />
           <Route path="/register" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </AnimatePresence>
     </ChakraProvider>

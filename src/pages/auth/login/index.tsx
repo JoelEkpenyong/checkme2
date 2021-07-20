@@ -13,7 +13,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { GoogleIcon, LogoIcon } from "../../../components/icon";
 import { motion } from "framer-motion";
 import LoginForm from "../../../components/auth/loginform";
-import { PageTransitionVariant } from "../../../components/util/framerVariants";
+import { PageTransitionVariant } from "../../../util/framerVariants";
 
 interface props {}
 
