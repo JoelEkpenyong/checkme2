@@ -1,18 +1,59 @@
 import React from "react";
 import * as Yup from "yup";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import {
   Box,
   Button,
   FormControl,
   FormErrorMessage,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import AuthInput from "../../input";
+import { loginUser } from "../../../services/auth";
+import { useUser } from "../../../hooks/useUser";
 
 interface props {}
 
 const LoginForm: React.FC<props> = () => {
+  const toast = useToast();
+  const user = useUser();
+
+  const login = async (
+    values: { email: string; password: string },
+    actions: FormikHelpers<{
+      email: string;
+      password: string;
+    }>
+  ) => {
+    try {
+      const response = await loginUser(values);
+      if (response) {
+        toast({
+          title: response.data.msg,
+          duration: 4000,
+          position: "top-right",
+          status: "success",
+          variant: "subtle",
+        });
+        user?.setUser(response.data.data);
+        actions.setSubmitting(false);
+        actions.resetForm();
+        console.dir(response.data);
+      }
+    } catch (error) {
+      toast({
+        title: error.response.data.msg,
+        duration: 4000,
+        position: "top-right",
+        status: "error",
+        variant: "subtle",
+      });
+      actions.setSubmitting(false);
+      throw error;
+    }
+  };
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -23,11 +64,7 @@ const LoginForm: React.FC<props> = () => {
           .required("Required"),
       })}
       onSubmit={(values, actions) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          actions.setSubmitting(false);
-          actions.resetForm();
-        }, 1000);
+        login(values, actions);
       }}
     >
       {(formik) => (

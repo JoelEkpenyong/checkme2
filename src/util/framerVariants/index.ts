@@ -1,10 +1,8 @@
 export const PageTransitionVariant = {
+  inital: {
+    opacity: 1,
+  },
   exit: {
     opacity: 0,
-    transiton: {
-      delay: 0,
-      duration: 2,
-      ease: "easeOut",
-    },
   },
 };

@@ -1,14 +1,33 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
 import { Landing } from "./pages/landing";
-import { Route, Switch, useLocation } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  RouteProps,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import { Signup } from "./pages/auth/signup";
 import { Login } from "./pages/auth/login";
 import { Dashboard } from "./pages/dashboard";
 import { AnimatePresence } from "framer-motion";
+import { isAuthenticated } from "./services/auth";
+require("dotenv").config();
 
 function App() {
   const location = useLocation();
+
+  const AuthenticatedRoute: React.FC<RouteProps> = ({ children, ...props }) => {
+    const authenticated = isAuthenticated();
+
+    return (
+      <Route
+        {...props}
+        render={() => (authenticated ? children : <Redirect to="/" />)}
+      />
+    );
+  };
 
   return (
     <ChakraProvider theme={theme}>
@@ -17,7 +36,9 @@ function App() {
           <Route path="/" exact component={Landing} />
           <Route path="/register" component={Signup} />
           <Route path="/login" component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
+          <AuthenticatedRoute path="/dashboard">
+            <Dashboard />
+          </AuthenticatedRoute>
         </Switch>
       </AnimatePresence>
     </ChakraProvider>

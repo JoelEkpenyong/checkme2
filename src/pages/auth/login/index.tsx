@@ -46,7 +46,7 @@ export const Login: React.FC<props> = () => {
           lineHeight={6}
           mt={8}
         >
-          let's create an account
+          login to your account
         </Text>
         <VStack spacing={7} minW={80} mt={9}>
           <LoginForm />

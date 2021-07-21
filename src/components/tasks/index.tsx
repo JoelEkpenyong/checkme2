@@ -35,7 +35,13 @@ export const Tasks: React.FC<props> = () => {
             isChecked={isChecked}
             onChange={() => setIsChecked(!isChecked)}
           />
-          <Editable flex={1} defaultValue="Take some chakra">
+          <Editable
+            submitOnBlur
+            flex={1}
+            defaultValue="Take some chakra"
+            onSubmit={(value) => console.log(value)}
+            isDisabled={isChecked}
+          >
             <EditablePreview
               textDecoration={isChecked ? "line-through" : "inital"}
             />
