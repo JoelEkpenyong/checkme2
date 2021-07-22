@@ -8,17 +8,23 @@ const AuthContext = createContext<{
 AuthContext.displayName = "AuthContext";
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<IUser>({
-    email: "",
-    id: "",
-    fullname: "",
-    token: "",
-  });
+  const author = localStorage.getItem("author");
+  const [user, setUser] = useState<IUser>(
+    author
+      ? JSON.parse(author)
+      : {
+          email: "",
+          id: "",
+          fullname: "",
+          token: "",
+        }
+  );
 
   const value = {
     user,
     setUser: (value: IUser) => {
       setUser(value);
+      localStorage.setItem("author", JSON.stringify(value));
       localStorage.setItem("auth_token", value.token);
     },
   };

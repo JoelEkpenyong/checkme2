@@ -4,10 +4,12 @@ import React from "react";
 import { AllTasksIcon } from "../icon";
 import { AddList } from "../addList";
 import { Lists } from "../lists";
+import { useUser } from "../../hooks/useUser";
 
 interface props {}
 
 export const Nav: React.FC<props> = () => {
+  const { user } = useUser();
   return (
     <Box
       as="nav"
@@ -23,7 +25,7 @@ export const Nav: React.FC<props> = () => {
           <HStack justifyContent="flex-start">
             <Avatar name="profile picture" src={profilePicture} size="sm" />
             <Text color="gray.100" fontSize="md" textTransform="capitalize">
-              Joel Ekpenyong
+              {user.fullname}
             </Text>
           </HStack>
         </Box>

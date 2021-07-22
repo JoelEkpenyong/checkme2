@@ -1,23 +1,22 @@
-import axios from "axios";
-import { useUser } from "../../hooks/useUser";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
-export const AuthAxios = () => {
-  const user = useUser();
+const authToken = localStorage.getItem("auth_token");
 
-  const axiosInstance = axios.create({
-    baseURL: process.env.BASE_URL,
-  });
-
-  axiosInstance.interceptors.request.use(
-    (config) => {
-      config.headers.Authorization = `Bearer ${user?.user.token}`;
-
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-
-  return axiosInstance;
+const config: AxiosRequestConfig = {
+  baseURL: process.env.REACT_APP_BASE_URL,
 };
+
+const authAxios: AxiosInstance = axios.create(config);
+
+authAxios.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = `Bearer ${authToken}`;
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export { authAxios };

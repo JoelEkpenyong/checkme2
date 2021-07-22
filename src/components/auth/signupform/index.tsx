@@ -36,13 +36,11 @@ const SignupForm: React.FC<props> = () => {
           duration: 4000,
           position: "top-right",
           status: "success",
-          variant: "subtle",
+          variant: "solid",
         });
         actions.setSubmitting(false);
         actions.resetForm();
-        setTimeout(() => {
-          setRedirectOnSignup(true);
-        }, 2000);
+        setRedirectOnSignup(true);
       }
       console.log(response.data);
     } catch (error) {
@@ -51,7 +49,7 @@ const SignupForm: React.FC<props> = () => {
         duration: 3000,
         position: "top-right",
         status: "error",
-        variant: "subtle",
+        variant: "solid",
       });
       actions.setSubmitting(false);
       throw error;
