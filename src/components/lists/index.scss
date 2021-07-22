@@ -1,0 +1,14 @@
+.list-item {
+  .delete-icon {
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-70px);
+    margin-left: -35px;
+  }
+
+  &:hover {
+    .delete-icon {
+      transform: translateX(0);
+      margin-left: 0;
+    }
+  }
+}

@@ -7,13 +7,62 @@ import {
   InputGroup,
   InputRightAddon,
   Input,
+  useToast,
+  Button,
 } from "@chakra-ui/react";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
-import React from "react";
+import React, { useState } from "react";
+import { createList } from "../../services/list";
+import { useList } from "../../hooks/useList";
 
 interface props {}
 
 export const AddList: React.FC<props> = () => {
+  const [newList, setNewList] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { lists, setLists } = useList();
+  const toast = useToast();
+
+  const handleSubmit = (value: string) => {
+    setIsSubmitting(true);
+    if (value.length === 0) {
+      toast({
+        title: "input can't be empty",
+        duration: 4000,
+        position: "top-right",
+        status: "info",
+        variant: "solid",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+    createList(value).then(
+      (response) => {
+        toast({
+          title: response.data.msg,
+          duration: 4000,
+          position: "top-right",
+          status: "success",
+          variant: "solid",
+        });
+        setIsSubmitting(false);
+        setNewList("");
+        setLists([...lists, response.data.data]);
+      },
+      (error) => {
+        toast({
+          title: "Try again",
+          duration: 4000,
+          position: "top-right",
+          status: "error",
+          variant: "solid",
+        });
+        setIsSubmitting(true);
+        console.error(error);
+      }
+    );
+  };
+
   return (
     <Accordion allowToggle>
       <AccordionItem border="none">
@@ -54,18 +103,32 @@ export const AddList: React.FC<props> = () => {
                     boxShadow: "none",
                     borderColor: "gray.300",
                   }}
+                  value={newList}
+                  onChange={(e) => setNewList(e.target.value)}
                 />
                 <InputRightAddon
                   width="25%"
                   bg="primary.500"
                   color="gray.100"
                   border="none"
-                  fontSize="xs"
                   fontWeight="medium"
                   justifyContent="center"
                   borderRightRadius="10px"
+                  cursor="pointer"
                 >
-                  <button onClick={() => alert("hey there")}>Add</button>
+                  <Button
+                    fontSize="xs"
+                    padding={0}
+                    height="inital"
+                    as="button"
+                    _hover={{
+                      backgroundColor: "inital",
+                    }}
+                    onClick={() => handleSubmit(newList)}
+                    isLoading={isSubmitting}
+                  >
+                    Add
+                  </Button>
                 </InputRightAddon>
               </InputGroup>
             </AccordionPanel>

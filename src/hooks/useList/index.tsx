@@ -6,7 +6,7 @@ export const useList = () => {
   useDebugValue("useList");
   const context = useContext(UserContext);
 
-  if (context === undefined)
+  if (context === null)
     throw new Error("useList must be used inside a <UserContext />");
 
   return context as IUseListHook;

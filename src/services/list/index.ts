@@ -6,7 +6,9 @@ const author: IUser = fromLocalStorage && JSON.parse(fromLocalStorage);
 
 export const getList = () => {
   return authAxios.get("/lists/get-lists", {
-    params: author.userId,
+    params: {
+      userId: author.userId,
+    },
   });
 };
 
@@ -32,16 +34,11 @@ export const updateList = (args: { listId: string; title: string }) => {
   return authAxios.patch("lists/update-list", payload, { params });
 };
 
-// export const deleteList = (args: { listId: string; title: string }) => {
-//   const { title, listId } = args;
-//   const payload = {
-//     title,
-//     author: author.userId,
-//   };
-//   const params = {
-//     listId,
-//     authorId: author.userId,
-//   };
+export const deleteList = (listId: string) => {
+  const params = {
+    listId,
+    authorId: author.userId,
+  };
 
-//   return authAxios.delete("lists/update-list", payload, { params });
-// };
+  return authAxios.delete("lists/delete-list", { params });
+};

@@ -5,13 +5,11 @@ const UserContext = createContext<IUseListHook | null>(null);
 UserContext.displayName = "UserContext";
 
 const UserProvider: React.FC = ({ children }) => {
-  const [lists, setLists] = useState<IList | {}>({});
+  const [lists, setLists] = useState<IList[] | []>([]);
 
   const value = {
     lists,
-    setLists: (lists: IList) => {
-      setLists(lists);
-    },
+    setLists,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

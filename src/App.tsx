@@ -13,6 +13,7 @@ import { Login } from "./pages/auth/login";
 import { Dashboard } from "./pages/dashboard";
 import { AnimatePresence } from "framer-motion";
 import { isAuthenticated } from "./services/auth";
+import { UserProvider } from "./context/userContext";
 require("dotenv").config();
 
 function App() {
@@ -37,7 +38,9 @@ function App() {
           <Route path="/register" component={Signup} />
           <Route path="/login" component={Login} />
           <AuthenticatedRoute path="/dashboard">
-            <Dashboard />
+            <UserProvider>
+              <Dashboard />
+            </UserProvider>
           </AuthenticatedRoute>
         </Switch>
       </AnimatePresence>

@@ -10,7 +10,7 @@ const authAxios: AxiosInstance = axios.create(config);
 
 authAxios.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = `Bearer ${authToken}`;
+    config.headers["auth-token"] = `${authToken}`;
 
     return config;
   },

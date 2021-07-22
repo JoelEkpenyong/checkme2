@@ -17,8 +17,8 @@ export interface IUseUserHook {
 }
 
 export interface IUseListHook {
-  lists: IList | {};
-  setLists: (lists: IList) => void;
+  lists: IList[] | [];
+  setLists: React.Dispatch<React.SetStateAction<[] | IList[]>>;
 }
 
 export interface ITask {

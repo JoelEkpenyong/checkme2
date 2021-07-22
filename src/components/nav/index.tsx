@@ -50,7 +50,7 @@ export const Nav: React.FC<props> = () => {
         <Box width="100%">
           <AddList />
         </Box>
-        <Box>
+        <Box width="100%">
           <Lists />
         </Box>
       </VStack>
