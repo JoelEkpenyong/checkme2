@@ -25,6 +25,7 @@ export const Nav: React.FC<props> = () => {
       transition="all 0.6s cubic-bezier(0, 0.55, 0.45, 1)"
       left={{ base: navState ? 0 : -280, md: 0 }}
       zIndex="overlay"
+      overflowY="auto"
     >
       <VStack alignItems="flex-start" spacing={5}>
         <Box
