@@ -2,6 +2,7 @@ import { AddIcon } from "@chakra-ui/icons";
 import {
   Box,
   Container,
+  HStack,
   Input,
   InputGroup,
   InputLeftAddon,
@@ -13,11 +14,15 @@ import { Nav } from "../../components/nav";
 import { Tasks } from "../../components/tasks";
 import { useList } from "../../hooks/useList";
 import { getList } from "../../services/list";
+import menuIcon from "@iconify-icons/jam/menu";
+import { InlineIcon } from "@iconify/react";
+import { useNavState } from "../../hooks/useNavState";
 
 interface props {}
 
 export const Dashboard: React.FC<props> = () => {
   const { setLists } = useList();
+  const { setNavState } = useNavState();
 
   useEffect(() => {
     getList().then((response) => {
@@ -28,18 +33,28 @@ export const Dashboard: React.FC<props> = () => {
   return (
     <Container maxWidth="auto" px={0}>
       <Nav />
-      <Box as="main" ml="280px" px={10} py="1.625rem">
+      <Box as="main" ml={{ base: 0, md: "280px" }} px={[4, 10]} py="1.625rem">
         <VStack alignItems="flex-start" spacing={5}>
-          <Text
-            as="h3"
-            color="primary.500"
-            fontWeight="semibold"
-            textTransform="capitalize"
-            fontSize="2xl"
-            m={0}
-          >
-            projects
-          </Text>
+          <HStack spacing={3}>
+            <Box
+              display={{ base: "inline", md: "none" }}
+              as={InlineIcon}
+              icon={menuIcon}
+              boxSize={8}
+              color="#2D9CDB"
+              onClick={setNavState.toggle}
+            />
+            <Text
+              as="h3"
+              color="primary.500"
+              fontWeight="semibold"
+              textTransform="capitalize"
+              fontSize="2xl"
+              m={0}
+            >
+              projects
+            </Text>
+          </HStack>
           <InputGroup>
             <InputLeftAddon bg="dark.100" border="none" justifyContent="center">
               <AddIcon fontSize="md" color="primary.500" />

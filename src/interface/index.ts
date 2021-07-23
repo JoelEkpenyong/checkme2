@@ -16,11 +16,6 @@ export interface IUseUserHook {
   setUser: (value: IUser) => void;
 }
 
-export interface IUseListHook {
-  lists: IList[] | [];
-  setLists: React.Dispatch<React.SetStateAction<[] | IList[]>>;
-}
-
 export interface ITask {
   completed: boolean;
   _id: string;
@@ -40,4 +35,29 @@ export interface IList {
   createdAt: string;
   updatedAt: string;
   __v: number;
+}
+
+export interface IUserContext {
+  lists: IList[] | [];
+  setLists: React.Dispatch<React.SetStateAction<[] | IList[]>>;
+  navState: boolean;
+  setNavState: {
+    readonly on: () => void;
+    readonly off: () => void;
+    readonly toggle: () => void;
+  };
+}
+
+export interface IUseListHook {
+  lists: IList[] | [];
+  setLists: React.Dispatch<React.SetStateAction<[] | IList[]>>;
+}
+
+export interface IUseNavState {
+  navState: boolean;
+  setNavState: {
+    readonly on: () => void;
+    readonly off: () => void;
+    readonly toggle: () => void;
+  };
 }
