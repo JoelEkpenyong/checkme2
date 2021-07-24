@@ -4,5 +4,9 @@ export const PageTransitionVariant = {
   },
   exit: {
     opacity: 0,
+    y: "-20px",
+    transition: {
+      duration: 0.3,
+    },
   },
 };
