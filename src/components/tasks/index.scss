@@ -1,0 +1,14 @@
+.task {
+  .delete-icon {
+    visibility: hidden;
+    transform: translateX(40px);
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    .delete-icon {
+      visibility: initial;
+      transform: translateX(0);
+    }
+  }
+}

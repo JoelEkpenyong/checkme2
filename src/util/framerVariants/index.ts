@@ -7,6 +7,7 @@ export const PageTransitionVariant = {
     y: "-20px",
     transition: {
       duration: 0.3,
+      type: "tween",
     },
   },
 };

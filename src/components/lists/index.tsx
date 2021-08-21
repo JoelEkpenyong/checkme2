@@ -10,7 +10,7 @@ import "./index.scss";
 interface props {}
 
 export const Lists: React.FC<props> = () => {
-  const { lists, setLists } = useList();
+  const { lists, setLists, setActiveList } = useList();
   const toast = useToast();
 
   const handleDelete = (id: string) => {
@@ -55,6 +55,9 @@ export const Lists: React.FC<props> = () => {
         bg: "dark.500",
       }}
       className="list-item"
+      onClick={() => {
+        setActiveList(list);
+      }}
     >
       <ListIcon
         as={DeleteIcon}

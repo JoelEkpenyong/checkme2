@@ -46,11 +46,15 @@ export interface IUserContext {
     readonly off: () => void;
     readonly toggle: () => void;
   };
+  activeList: IList | undefined;
+  setActiveList: React.Dispatch<React.SetStateAction<IList | undefined>>;
 }
 
 export interface IUseListHook {
   lists: IList[] | [];
   setLists: React.Dispatch<React.SetStateAction<[] | IList[]>>;
+  activeList: IList | undefined;
+  setActiveList: React.Dispatch<React.SetStateAction<IList | undefined>>;
 }
 
 export interface IUseNavState {

@@ -8,12 +8,15 @@ UserContext.displayName = "UserContext";
 const UserProvider: React.FC = ({ children }) => {
   const [lists, setLists] = useState<IList[] | []>([]);
   const [navState, setNavState] = useBoolean(false);
+  const [activeList, setActiveList] = useState<IList>();
 
   const value = {
     lists,
     setLists,
     navState,
     setNavState,
+    activeList,
+    setActiveList,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
