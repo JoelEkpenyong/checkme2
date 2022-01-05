@@ -1,34 +1,45 @@
 import { IUser } from "../../interface";
 import { authAxios } from "../../util/authAxios";
 
-const fromLocalStorage = localStorage.getItem("author");
-const author: IUser = fromLocalStorage && JSON.parse(fromLocalStorage);
-const authorId = author?.userId;
+const retrieveUser = () => {
+  const fromLocalStorage = localStorage.getItem("author");
+  const author: IUser = fromLocalStorage && JSON.parse(fromLocalStorage);
+
+  return author
+}
 
 export const getAllTasks = () => {
+  const author = retrieveUser()
+
   return authAxios.get("tasks/get-tasks/", {
     params: {
-      authorId,
+      authorId: author?.userId,
     },
   });
 };
 
 export const getTasksById = (listId: string) => {
+  const author = retrieveUser()
+
   return authAxios.get("tasks/get-tasks/", {
     params: {
       listId,
-      authorId,
+      authorId: author?.userId,
     },
   });
 };
 
 export const createTask = (args: {
+
   title: string;
   listId: string | undefined;
 }) => {
+
+  const author = retrieveUser()
+
   let payload = {
     title: args.title,
-    author: authorId,
+    author: author?.userId,
   };
 
   let params = {
@@ -43,9 +54,11 @@ export const updateTask = (args: {
   listId: string;
   taskId: string;
 }) => {
+  const author = retrieveUser()
+
   let payload = {
     title: args.title,
-    author: authorId,
+    author: author?.userId,
   };
 
   let params = {
