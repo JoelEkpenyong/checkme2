@@ -3,7 +3,7 @@ import { authAxios } from "../../util/authAxios";
 
 const fromLocalStorage = localStorage.getItem("author");
 const author: IUser = fromLocalStorage && JSON.parse(fromLocalStorage);
-const authorId = author.userId;
+const authorId = author?.userId;
 
 export const getAllTasks = () => {
   return authAxios.get("tasks/get-tasks/", {
